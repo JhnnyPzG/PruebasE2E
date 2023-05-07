@@ -1,0 +1,37 @@
+package co.com.falabella.stepdefinitions;
+
+import io.cucumber.java.es.Cuando;
+import io.cucumber.java.es.Dado;
+import io.cucumber.java.es.Entonces;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Open;
+import org.openqa.selenium.Keys;
+
+import static co.com.falabella.pages.CabeceraPage.*;
+
+
+public class VolverAInicioDespuesDeStepDefinitions {
+
+    @Dado("que {actor} ingreso a la pagina falabella")
+    public void abrirPagina(Actor actor) {
+        actor.attemptsTo(
+                Open.url("https://www.falabella.com.co")
+        );
+    }
+
+    @Cuando("{actor} haga una busqueda")
+    public void hacerBusqueda(Actor actor) {
+        actor.attemptsTo(
+                Enter.theValue("mac").into(BARRA_BUSQUEDA).thenHit(Keys.ENTER)
+        );
+    }
+
+    @Entonces("{actor} volvera al inicio")
+    public void volverAInicio(Actor actor) {
+        actor.attemptsTo(
+                Click.on(IR_INICIO)
+        );
+    }
+}
